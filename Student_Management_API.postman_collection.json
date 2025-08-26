@@ -129,51 +129,6 @@
 			"response": []
 		},
 		{
-			"name": "Search Students by Name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/search?name=John",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "search"],
-					"query": [
-						{
-							"key": "name",
-							"value": "John"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Students by Department",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/department/Computer%20Science",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "department", "Computer Science"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Students by Enrollment Year",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/enrollment-year/2022",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "enrollment-year", "2022"]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get Active Students",
 			"request": {
 				"method": "GET",
@@ -182,68 +137,6 @@
 					"raw": "{{base_url}}/api/students/active",
 					"host": ["{{base_url}}"],
 					"path": ["api", "students", "active"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Students by Department and Enrollment Year",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/department/Computer%20Science/enrollment-year/2022",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "department", "Computer Science", "enrollment-year", "2022"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Students by Enrollment Year Range",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/enrollment-year-range?startYear=2020&endYear=2023",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "enrollment-year-range"],
-					"query": [
-						{
-							"key": "startYear",
-							"value": "2020"
-						},
-						{
-							"key": "endYear",
-							"value": "2023"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Student Count by Department",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/count/department/Computer%20Science",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "count", "department", "Computer Science"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Check Email Exists",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/students/check-email/john.doe@example.com",
-					"host": ["{{base_url}}"],
-					"path": ["api", "students", "check-email", "john.doe@example.com"]
 				}
 			},
 			"response": []

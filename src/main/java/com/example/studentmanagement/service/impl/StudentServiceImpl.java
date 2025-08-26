@@ -20,11 +20,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponseDTO createStudent(StudentRequestDTO studentRequestDTO) {
-        // Check if email already exists
-        if (studentRepository.existsByEmail(studentRequestDTO.getEmail())) {
-            throw new RuntimeException("Student with email " + studentRequestDTO.getEmail() + " already exists");
-        }
-
         // Create new student entity
         Student student = new Student();
         student.setFirstName(studentRequestDTO.getFirstName());
@@ -66,32 +61,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponseDTO> getStudentsByDepartment(String department) {
-        List<Student> students = studentRepository.findByDepartment(department);
-        return students.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<StudentResponseDTO> getStudentsByEnrollmentYear(Integer enrollmentYear) {
-        List<Student> students = studentRepository.findByEnrollmentYear(enrollmentYear);
-        return students.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<StudentResponseDTO> getActiveStudents() {
         List<Student> students = studentRepository.findByIsActiveTrue();
-        return students.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<StudentResponseDTO> searchStudentsByName(String name) {
-        List<Student> students = studentRepository.findByNameContaining(name);
         return students.stream()
                 .map(this::convertToResponseDTO)
                 .collect(Collectors.toList());
@@ -101,12 +72,6 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
         Student existingStudent = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
-
-        // Check if email is being changed and if the new email already exists
-        if (!existingStudent.getEmail().equals(studentRequestDTO.getEmail()) &&
-            studentRepository.existsByEmail(studentRequestDTO.getEmail())) {
-            throw new RuntimeException("Student with email " + studentRequestDTO.getEmail() + " already exists");
-        }
 
         // Update student fields
         existingStudent.setFirstName(studentRequestDTO.getFirstName());
@@ -149,32 +114,6 @@ public class StudentServiceImpl implements StudentService {
         student.setUpdatedAt(LocalDate.now());
         Student activatedStudent = studentRepository.save(student);
         return convertToResponseDTO(activatedStudent);
-    }
-
-    @Override
-    public List<StudentResponseDTO> getStudentsByDepartmentAndEnrollmentYear(String department, Integer enrollmentYear) {
-        List<Student> students = studentRepository.findByDepartmentAndEnrollmentYear(department, enrollmentYear);
-        return students.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<StudentResponseDTO> getStudentsByEnrollmentYearRange(Integer startYear, Integer endYear) {
-        List<Student> students = studentRepository.findByEnrollmentYearBetween(startYear, endYear);
-        return students.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public long getStudentCountByDepartment(String department) {
-        return studentRepository.countByDepartment(department);
-    }
-
-    @Override
-    public boolean isEmailExists(String email) {
-        return studentRepository.existsByEmail(email);
     }
 
     // Helper method to convert Student entity to StudentResponseDTO

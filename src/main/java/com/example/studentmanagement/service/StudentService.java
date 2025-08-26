@@ -20,17 +20,8 @@ public interface StudentService {
     // Get student by email
     StudentResponseDTO getStudentByEmail(String email);
 
-    // Get students by department
-    List<StudentResponseDTO> getStudentsByDepartment(String department);
-
-    // Get students by enrollment year
-    List<StudentResponseDTO> getStudentsByEnrollmentYear(Integer enrollmentYear);
-
     // Get active students
     List<StudentResponseDTO> getActiveStudents();
-
-    // Search students by name
-    List<StudentResponseDTO> searchStudentsByName(String name);
 
     // Update student
     StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO);
@@ -43,16 +34,4 @@ public interface StudentService {
 
     // Activate student
     StudentResponseDTO activateStudent(Long id);
-
-    // Get students by department and enrollment year
-    List<StudentResponseDTO> getStudentsByDepartmentAndEnrollmentYear(String department, Integer enrollmentYear);
-
-    // Get students by enrollment year range
-    List<StudentResponseDTO> getStudentsByEnrollmentYearRange(Integer startYear, Integer endYear);
-
-    // Count students by department
-    long getStudentCountByDepartment(String department);
-
-    // Check if email exists
-    boolean isEmailExists(String email);
 }

@@ -63,44 +63,11 @@ public class StudentController {
         }
     }
 
-    // READ - Get students by department
-    @GetMapping("/department/{department}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByDepartment(@PathVariable String department) {
-        try {
-            List<StudentResponseDTO> students = studentService.getStudentsByDepartment(department);
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    // READ - Get students by enrollment year
-    @GetMapping("/enrollment-year/{year}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByEnrollmentYear(@PathVariable Integer year) {
-        try {
-            List<StudentResponseDTO> students = studentService.getStudentsByEnrollmentYear(year);
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     // READ - Get active students
     @GetMapping("/active")
     public ResponseEntity<List<StudentResponseDTO>> getActiveStudents() {
         try {
             List<StudentResponseDTO> students = studentService.getActiveStudents();
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    // READ - Search students by name
-    @GetMapping("/search")
-    public ResponseEntity<List<StudentResponseDTO>> searchStudentsByName(@RequestParam String name) {
-        try {
-            List<StudentResponseDTO> students = studentService.searchStudentsByName(name);
             return new ResponseEntity<>(students, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -149,52 +116,6 @@ public class StudentController {
             return new ResponseEntity<>(activatedStudent, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    // READ - Get students by department and enrollment year
-    @GetMapping("/department/{department}/enrollment-year/{year}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByDepartmentAndEnrollmentYear(
-            @PathVariable String department, @PathVariable Integer year) {
-        try {
-            List<StudentResponseDTO> students = studentService.getStudentsByDepartmentAndEnrollmentYear(department, year);
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    // READ - Get students by enrollment year range
-    @GetMapping("/enrollment-year-range")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByEnrollmentYearRange(
-            @RequestParam Integer startYear, @RequestParam Integer endYear) {
-        try {
-            List<StudentResponseDTO> students = studentService.getStudentsByEnrollmentYearRange(startYear, endYear);
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    // READ - Get student count by department
-    @GetMapping("/count/department/{department}")
-    public ResponseEntity<Long> getStudentCountByDepartment(@PathVariable String department) {
-        try {
-            long count = studentService.getStudentCountByDepartment(department);
-            return new ResponseEntity<>(count, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    // CHECK - Check if email exists
-    @GetMapping("/check-email/{email}")
-    public ResponseEntity<Boolean> checkEmailExists(@PathVariable String email) {
-        try {
-            boolean exists = studentService.isEmailExists(email);
-            return new ResponseEntity<>(exists, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

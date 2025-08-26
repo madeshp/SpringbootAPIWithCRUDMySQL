@@ -5,7 +5,6 @@ A comprehensive Spring Boot REST API for managing student information with full 
 ## 🚀 Features
 
 - **Full CRUD Operations**: Create, Read, Update, and Delete student records
-- **Advanced Search**: Search students by name, department, enrollment year, and more
 - **Data Validation**: Comprehensive input validation with custom error messages
 - **Soft Delete**: Deactivate students instead of permanent deletion
 - **Sample Data**: Pre-loaded sample student data for testing
@@ -104,37 +103,9 @@ http://localhost:8080/api/students
 - **PATCH** `/api/students/{id}/activate`
 - **Response**: 200 OK with StudentResponseDTO
 
-#### 9. Search Students by Name
-- **GET** `/api/students/search?name={name}`
-- **Response**: 200 OK with List<StudentResponseDTO>
-
-#### 10. Get Students by Department
-- **GET** `/api/students/department/{department}`
-- **Response**: 200 OK with List<StudentResponseDTO>
-
-#### 11. Get Students by Enrollment Year
-- **GET** `/api/students/enrollment-year/{year}`
-- **Response**: 200 OK with List<StudentResponseDTO>
-
-#### 12. Get Active Students
+#### 9. Get Active Students
 - **GET** `/api/students/active`
 - **Response**: 200 OK with List<StudentResponseDTO>
-
-#### 13. Get Students by Department and Enrollment Year
-- **GET** `/api/students/department/{department}/enrollment-year/{year}`
-- **Response**: 200 OK with List<StudentResponseDTO>
-
-#### 14. Get Students by Enrollment Year Range
-- **GET** `/api/students/enrollment-year-range?startYear={start}&endYear={end}`
-- **Response**: 200 OK with List<StudentResponseDTO>
-
-#### 15. Get Student Count by Department
-- **GET** `/api/students/count/department/{department}`
-- **Response**: 200 OK with count
-
-#### 16. Check Email Exists
-- **GET** `/api/students/check-email/{email}`
-- **Response**: 200 OK with boolean
 
 ## 📝 Data Models
 
@@ -219,14 +190,9 @@ curl -X PUT http://localhost:8080/api/students/1 \
 curl -X DELETE http://localhost:8080/api/students/1
 ```
 
-### Search Students by Name
+### Get Active Students
 ```bash
-curl -X GET "http://localhost:8080/api/students/search?name=John"
-```
-
-### Get Students by Department
-```bash
-curl -X GET http://localhost:8080/api/students/department/Computer%20Science
+curl -X GET http://localhost:8080/api/students/active
 ```
 
 ## 🧪 Testing
